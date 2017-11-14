@@ -20,10 +20,8 @@ public class RandomChairThread implements Runnable {
 	}
 
 	public void run() {
-		// TODO Auto-generated method stub
 		ArrayList<Integer> tmp = new ArrayList<Integer>();
 		int value = 0;
-		
 		for (int k = 0; k < gui.tmpButton.size(); k++) {
 			boolean isInTheList = false;
 			do {
@@ -37,7 +35,7 @@ public class RandomChairThread implements Runnable {
 			} while (isInTheList == true);
 			tmp.add(Integer.valueOf(value));
 		}
-		
+
 		for (int j = 0; j < tmp.size(); j++) {
 			gui.tmpButton.get(j).setBackground(Color.WHITE);
 			gui.tmpButton.get(j).setText("EMPTY");
@@ -48,7 +46,6 @@ public class RandomChairThread implements Runnable {
 				if (gui.btnChair[i] == null) {
 					continue;
 				}
-				// Checkname
 				String n = "";
 				Color c;
 				int r = tmp.get(i);
@@ -116,29 +113,15 @@ public class RandomChairThread implements Runnable {
 				} else {
 					c = Color.PINK;
 				}
-
 				gui.tmpButton.get(i).setText("" + n);
 				gui.tmpButton.get(i).setBackground(c);
-
-				for (int k = 0; k < 20; k++) {
+				for (int k = 0; k < 100; k++) {
 					for (int j = i + 1; j < tmp.size(); j++) {
 						gui.tmpButton.get(j).setText("" + rnd.nextInt(gui.tmpButton.size()));
 					}
 					try {
-						thread.sleep(25);
+						Thread.sleep(10);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				for (int k = 0; k < 20; k++) {
-					for (int j = i + 1; j < tmp.size(); j++) {
-						gui.tmpButton.get(j).setText("" + rnd.nextInt(gui.tmpButton.size()));
-					}
-					try {
-						thread.sleep(25);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -148,26 +131,21 @@ public class RandomChairThread implements Runnable {
 		}
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < tmp.size(); j++) {
-				gui.tmpButton.get(j).setBackground(Color.WHITE);
+				gui.tmpButton.get(j).setForeground(Color.WHITE);
 			}
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			for (int j = 0; j < tmp.size(); j++) {
-				gui.tmpButton.get(j).setBackground(Color.YELLOW);
+				gui.tmpButton.get(j).setForeground(Color.BLACK);
 			}
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		for (int j = 0; j < tmp.size(); j++) {
-			gui.tmpButton.get(j).setBackground(Color.GREEN);
 		}
 		isRunning = false;
 	}

@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,19 +14,14 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 public class MainSM extends JFrame implements ActionListener {
-
+	private static final long serialVersionUID = 561811103320831759L;
 	private JPanel contentPane;
-
 	public final int chairSize = 32;
 	public final int chairSizeX = 120;
 	public final int chairSizeY = 100;
 	public JButton btnChair[] = new JButton[chairSize];
-
 	public ArrayList<JButton> tmpButton = new ArrayList<JButton>();
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,23 +36,8 @@ public class MainSM extends JFrame implements ActionListener {
 
 	}
 
-	/**
-	 * Create the frame.
-	 */
-
-	private class CloseListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.exit(0);
-		}
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		RandomChairThread chair = new RandomChairThread(this);
-		chair.isRunning = true;
-	}
-
 	public MainSM() {
+
 		setTitle("main.palapon2545.smd36.myClassRoom.chairRandom.MainSM.java");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1001, 631);
@@ -67,7 +46,7 @@ public class MainSM extends JFrame implements ActionListener {
 		contentPane.setBackground(Color.BLACK);
 		setContentPane(contentPane);
 
-		JButton btnRandom = new JButton("Random");
+		JButton btnRandom = new JButton("\u0E2A\u0E38\u0E48\u0E21");
 		btnRandom.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnRandom.setBounds(530, 506, 200, 60);
 		btnRandom.addActionListener(this);
@@ -76,7 +55,7 @@ public class MainSM extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		contentPane.add(btnRandom);
 
-		JButton btnClose = new JButton("Exit");
+		JButton btnClose = new JButton("\u0E2D\u0E2D\u0E01");
 		btnClose.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnClose.setForeground(Color.WHITE);
 		btnClose.setBounds(750, 506, 200, 60);
@@ -103,13 +82,13 @@ public class MainSM extends JFrame implements ActionListener {
 		JLabel lblPondja = new JLabel(
 				"\u0E08\u0E31\u0E14\u0E17\u0E33\u0E42\u0E14\u0E22 Palapon Soontornas \u0E41\u0E25\u0E30 Patiphat Mana-u-krid");
 		lblPondja.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPondja.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPondja.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblPondja.setBounds(10, 550, 1457, 59);
 		lblPondja.setForeground(Color.WHITE);
 		contentPane.add(lblPondja);
 
 		for (int i = 0; i < chairSize; i++) {
-			btnChair[i] = new JButton("EMPTY");
+			btnChair[i] = new JButton("\u0E40\u0E01\u0E49\u0E32\u0E2D\u0E35\u0E49");
 			btnChair[i].setFont(new Font("Tahoma", Font.BOLD, 17));
 			btnChair[i].setBackground(Color.WHITE);
 			btnChair[i].setBounds(((i % 8) * chairSizeX) + ((i % 8) >= 4 ? 25 : 0), (i / 8) * (chairSizeY + 25),
@@ -126,7 +105,18 @@ public class MainSM extends JFrame implements ActionListener {
 				tmpButton.add(btnChair[i]);
 				break;
 			}
-			// btnChair[i].setText("num=" + (i+1 ));
+			//btnChair[i].setText("num=" + (i + 1));
 		}
+	}
+	
+	private class CloseListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
+	}
+	public void actionPerformed(ActionEvent e) {
+		RandomChairThread chair = new RandomChairThread(this);
+		chair.isRunning = true;
 	}
 }
