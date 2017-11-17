@@ -19,7 +19,7 @@ public class MainSM extends JFrame implements ActionListener {
 	public final int chairSize = 32;
 	public final int chairSizeX = 120;
 	public final int chairSizeY = 100;
-	public JButton btnChair[] = new JButton[chairSize];
+	private JButton btnChair[] = new JButton[chairSize];
 	public ArrayList<JButton> tmpButton = new ArrayList<JButton>();
 
 	public static void main(String[] args) {
