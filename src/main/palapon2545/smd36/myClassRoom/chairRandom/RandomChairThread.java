@@ -112,7 +112,7 @@ public class RandomChairThread implements Runnable {
 				e.printStackTrace();
 			}
 
-			for (int delay = 0; delay < 5; delay++) {
+			for (int delay = 0; delay < 100; delay++) {
 				for (int loopRandomAnimation = loopAllChair
 						+ 1; loopRandomAnimation < maxChairSize; loopRandomAnimation++) {
 					gui.tmpButton.get(list1[loopRandomAnimation]).setText("" + name[rnd.nextInt(name.length)]);

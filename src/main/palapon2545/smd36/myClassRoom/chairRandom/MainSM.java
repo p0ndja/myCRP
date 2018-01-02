@@ -140,7 +140,7 @@ public class MainSM extends JFrame implements ActionListener {
 
 		for (int i = 0; i < chairSize; i++) {
 			btnChair[i] = new JButton("x");
-			btnChair[i].setFont(new Font("Tahoma", Font.BOLD, 20));
+			btnChair[i].setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnChair[i].setBackground(Color.LIGHT_GRAY);
 			btnChair[i].setBounds(((i % 8) * chairSizeX) + ((i % 8) >= 4 ? 25 : 0), (i / 8) * (chairSizeY + 25),
 					chairSizeX, chairSizeY);
