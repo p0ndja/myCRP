@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,10 +19,19 @@ public class MainSM extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 561811103320831759L;
 	private JPanel contentPane;
 	public final int chairSize = 32;
-	public final int chairSizeX = 120;
+	public final int chairSizeX = 130;
 	public final int chairSizeY = 100;
 	private JButton btnChair[] = new JButton[chairSize];
 	public ArrayList<JButton> tmpButton = new ArrayList<JButton>();
+	public final String title = "main.palapon2545.smd36.myClassRoom.chairRandom.MainSM.java";
+	public final int width = 1073;
+	public final int height = 631;
+	public final Color bgcolor = Color.BLACK;
+	public final String randomButton = "\u0E2A\u0E38\u0E48\u0E21";
+	public final String closeButton = "\u0E2D\u0E2D\u0E01";
+	public final String mainText = "\u0E42\u0E1B\u0E23\u0E41\u0E01\u0E23\u0E21\u0E2A\u0E38\u0E48\u0E21\u0E17\u0E35\u0E48\u0E19\u0E31\u0E48\u0E07 [4/1]";
+	public final String subText = "Chair Random Position";
+	public final String credit = "\u0E08\u0E31\u0E14\u0E17\u0E33\u0E42\u0E14\u0E22";
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,62 +46,102 @@ public class MainSM extends JFrame implements ActionListener {
 		});
 
 	}
+	
+	public void announce(String m) {
+		System.out.print(m + String.format("%n"));
+	}
 
 	public MainSM() {
-
-		setTitle("main.palapon2545.smd36.myClassRoom.chairRandom.MainSM.java");
+		announce("running program . . .");
+		announce("set title = " + title);
+		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1001, 631);
+		setBounds(100, 100, width, height);
+		announce("set gui border");
+		announce(" width = " + width);
+		announce(" height = " + height);
+		announce("set background = " + bgcolor.toString());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setBackground(Color.BLACK);
+		contentPane.setBackground(bgcolor);
 		setContentPane(contentPane);
 
-		JButton btnRandom = new JButton("\u0E2A\u0E38\u0E48\u0E21");
-		btnRandom.setFont(new Font("Tahoma", Font.BOLD, 30));
-		btnRandom.setBounds(530, 506, 200, 60);
+		JButton btnRandom = new JButton(randomButton);
+		btnRandom.setFont(new Font("Cordia New", Font.BOLD, 56));
+		btnRandom.setBounds(576, 489, 140, 100);
 		btnRandom.addActionListener(this);
 		btnRandom.setBackground(Color.GREEN);
 		btnRandom.setForeground(Color.WHITE);
 		contentPane.setLayout(null);
 		contentPane.add(btnRandom);
+		announce("add button '" + randomButton + "'");
 
-		JButton btnClose = new JButton("\u0E2D\u0E2D\u0E01");
-		btnClose.setFont(new Font("Tahoma", Font.BOLD, 30));
+		JButton btnClose = new JButton(closeButton);
+		btnClose.setFont(new Font("Cordia New", Font.BOLD, 56));
 		btnClose.setForeground(Color.WHITE);
-		btnClose.setBounds(750, 506, 200, 60);
+		btnClose.setBounds(892, 489, 140, 100);
 		btnClose.addActionListener(new CloseListener());
 		btnClose.setBackground(Color.RED);
 		contentPane.setLayout(null);
 		contentPane.add(btnClose);
-
-		JLabel label1 = new JLabel("Chair Random Position");
-		label1.setHorizontalAlignment(SwingConstants.CENTER);
-		label1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		label1.setBounds(10, 530, 507, 59);
-		label1.setForeground(Color.WHITE);
-		contentPane.add(label1);
-
-		JLabel label = new JLabel(
-				"\u0E42\u0E1B\u0E23\u0E41\u0E01\u0E23\u0E21\u0E2A\u0E38\u0E48\u0E21\u0E17\u0E35\u0E48\u0E19\u0E31\u0E48\u0E07");
+		announce("add button '" + closeButton + "'");
+		
+		JLabel label = new JLabel(mainText);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.BOLD, 40));
+		label.setFont(new Font("Cordia New", Font.BOLD, 60));
 		label.setForeground(Color.WHITE);
 		label.setBounds(10, 500, 507, 59);
 		contentPane.add(label);
+		announce("add text '" + mainText + "'");
 
-		JLabel lblPondja = new JLabel(
-				"\u0E08\u0E31\u0E14\u0E17\u0E33\u0E42\u0E14\u0E22 Palapon Soontornas \u0E41\u0E25\u0E30 Patiphat Mana-u-krid");
+		JLabel label1 = new JLabel(subText);
+		label1.setHorizontalAlignment(SwingConstants.CENTER);
+		label1.setFont(new Font("Cordia New", Font.PLAIN, 40));
+		label1.setBounds(10, 530, 507, 59);
+		label1.setForeground(Color.WHITE);
+		contentPane.add(label1);
+		announce("add text '" + subText + "'");
+		
+		JLabel label_1 = new JLabel(credit);
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Cordia New", Font.BOLD, 44));
+		label_1.setBounds(206, 371, 1457, 59);
+		contentPane.add(label_1);
+		announce("add credit head text '" + credit + "'");
+
+		JLabel lblPondja = new JLabel("Palapon Soontornpas");
 		lblPondja.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPondja.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblPondja.setBounds(10, 550, 1457, 59);
+		lblPondja.setFont(new Font("Cordia New", Font.BOLD, 36));
+		lblPondja.setBounds(206, 403, 1457, 59);
 		lblPondja.setForeground(Color.WHITE);
 		contentPane.add(lblPondja);
+		announce("add credit text 'Palapon Soontornpas'");
+
+		JLabel lblPatiphatManaukrid = new JLabel("Patiphat Mana-u-krid");
+		lblPatiphatManaukrid.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPatiphatManaukrid.setForeground(Color.WHITE);
+		lblPatiphatManaukrid.setFont(new Font("Cordia New", Font.BOLD, 36));
+		lblPatiphatManaukrid.setBounds(206, 430, 1457, 59);
+		contentPane.add(lblPatiphatManaukrid);
+		announce("add credit text 'Patiphat Mana-u-krid'");
+		
+		JButton button = new JButton("\u0E23\u0E35\u0E04\u0E48\u0E32");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				restartApplication();
+			}
+		});
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Cordia New", Font.BOLD, 56));
+		button.setBackground(Color.CYAN);
+		button.setBounds(736, 489, 140, 100);
+		contentPane.add(button);
 
 		for (int i = 0; i < chairSize; i++) {
-			btnChair[i] = new JButton("\u0E40\u0E01\u0E49\u0E32\u0E2D\u0E35\u0E49");
-			btnChair[i].setFont(new Font("Tahoma", Font.BOLD, 17));
-			btnChair[i].setBackground(Color.WHITE);
+			btnChair[i] = new JButton("x");
+			btnChair[i].setFont(new Font("Tahoma", Font.BOLD, 20));
+			btnChair[i].setBackground(Color.LIGHT_GRAY);
 			btnChair[i].setBounds(((i % 8) * chairSizeX) + ((i % 8) >= 4 ? 25 : 0), (i / 8) * (chairSizeY + 25),
 					chairSizeX, chairSizeY);
 			contentPane.add(btnChair[i]);
@@ -105,18 +156,44 @@ public class MainSM extends JFrame implements ActionListener {
 				tmpButton.add(btnChair[i]);
 				break;
 			}
-			//btnChair[i].setText("num=" + (i + 1));
+			// btnChair[i].setText("num=" + (i + 1));
 		}
+		announce("rendered " + tmpButton.size() + " chairs."); 
 	}
-	
+
 	private class CloseListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);
 		}
 	}
+
 	public void actionPerformed(ActionEvent e) {
 		RandomChairThread chair = new RandomChairThread(this);
 		chair.isRunning = true;
+	}
+
+	public void restartApplication() {
+		final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+		final File currentJar = new File("401chairRandom.jar");
+
+		/* is it a jar file? */
+		if (!currentJar.getName().endsWith(".jar"))
+			return;
+
+		/* Build command: java -jar application.jar */
+		final ArrayList<String> command = new ArrayList<String>();
+		command.add(javaBin);
+		command.add("-jar");
+		command.add(currentJar.getPath());
+
+		final ProcessBuilder builder = new ProcessBuilder(command);
+		try {
+			builder.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.exit(0);
 	}
 }
