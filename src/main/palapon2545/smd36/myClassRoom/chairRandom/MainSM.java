@@ -44,17 +44,16 @@ public class MainSM extends JFrame implements ActionListener {
 				}
 			}
 		});
-
 	}
-	
-	public void announce(String m) {
+
+	public static void announce(String m) {
 		System.out.print(m + String.format("%n"));
 	}
 
 	public MainSM() {
 		announce("running program . . .");
-		announce("set title = " + title);
 		setTitle(title);
+		announce("set title = " + title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, width, height);
 		announce("set gui border");
@@ -85,7 +84,7 @@ public class MainSM extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		contentPane.add(btnClose);
 		announce("add button '" + closeButton + "'");
-		
+
 		JLabel label = new JLabel(mainText);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Cordia New", Font.BOLD, 60));
@@ -101,7 +100,7 @@ public class MainSM extends JFrame implements ActionListener {
 		label1.setForeground(Color.WHITE);
 		contentPane.add(label1);
 		announce("add text '" + subText + "'");
-		
+
 		JLabel label_1 = new JLabel(credit);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setForeground(Color.WHITE);
@@ -110,36 +109,37 @@ public class MainSM extends JFrame implements ActionListener {
 		contentPane.add(label_1);
 		announce("add credit head text '" + credit + "'");
 
-		JLabel lblPondja = new JLabel("Palapon Soontornpas");
-		lblPondja.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPondja.setFont(new Font("Cordia New", Font.BOLD, 36));
-		lblPondja.setBounds(206, 403, 1457, 59);
-		lblPondja.setForeground(Color.WHITE);
-		contentPane.add(lblPondja);
-		announce("add credit text 'Palapon Soontornpas'");
+		JLabel lblPond = new JLabel("Palapon Soontornpas (Pond)");
+		lblPond.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPond.setFont(new Font("Cordia New", Font.BOLD, 28));
+		lblPond.setBounds(206, 399, 1457, 59);
+		lblPond.setForeground(Color.WHITE);
+		contentPane.add(lblPond);
+		announce("add credit text 'Palapon Soontornpas (Pond)'");
 
-		JLabel lblPatiphatManaukrid = new JLabel("Patiphat Mana-u-krid");
-		lblPatiphatManaukrid.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPatiphatManaukrid.setForeground(Color.WHITE);
-		lblPatiphatManaukrid.setFont(new Font("Cordia New", Font.BOLD, 36));
-		lblPatiphatManaukrid.setBounds(206, 430, 1457, 59);
-		contentPane.add(lblPatiphatManaukrid);
-		announce("add credit text 'Patiphat Mana-u-krid'");
-		
+		JLabel lblDew = new JLabel("Patiphat Mana-u-krid (Dew)");
+		lblDew.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDew.setForeground(Color.WHITE);
+		lblDew.setFont(new Font("Cordia New", Font.BOLD, 28));
+		lblDew.setBounds(206, 427, 1457, 59);
+		contentPane.add(lblDew);
+		announce("add credit text 'Patiphat Mana-u-krid (Dew)'");
+
 		JButton button = new JButton("\u0E23\u0E35\u0E04\u0E48\u0E32");
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Cordia New", Font.BOLD, 56));
+		button.setBackground(Color.CYAN);
+		button.setBounds(736, 489, 140, 100);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				restartApplication();
 			}
 		});
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Cordia New", Font.BOLD, 56));
-		button.setBackground(Color.CYAN);
-		button.setBounds(736, 489, 140, 100);
 		contentPane.add(button);
-
+		
+		announce("");
 		for (int i = 0; i < chairSize; i++) {
-			btnChair[i] = new JButton("x");
+			btnChair[i] = new JButton("");
 			btnChair[i].setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnChair[i].setBackground(Color.LIGHT_GRAY);
 			btnChair[i].setBounds(((i % 8) * chairSizeX) + ((i % 8) >= 4 ? 25 : 0), (i / 8) * (chairSizeY + 25),
@@ -156,9 +156,17 @@ public class MainSM extends JFrame implements ActionListener {
 				tmpButton.add(btnChair[i]);
 				break;
 			}
-			// btnChair[i].setText("num=" + (i + 1));
+			int o;
+			if (i < 24) {
+				o = i + 1;
+			} else {
+				o = i;
+			}
+			btnChair[i].setText("" + o);
+			announce("render chair " + o + " at " + "x=" + (((i % 8) * chairSizeX) + ((i % 8) >= 4 ? 25 : 0)) + " y="
+					+ ((i / 8) * (chairSizeY + 25)));
 		}
-		announce("rendered " + tmpButton.size() + " chairs."); 
+		announce("rendered " + tmpButton.size() + " chairs.");
 	}
 
 	private class CloseListener implements ActionListener {
@@ -176,22 +184,18 @@ public class MainSM extends JFrame implements ActionListener {
 	public void restartApplication() {
 		final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
 		final File currentJar = new File("401chairRandom.jar");
-
 		/* is it a jar file? */
 		if (!currentJar.getName().endsWith(".jar"))
 			return;
-
 		/* Build command: java -jar application.jar */
 		final ArrayList<String> command = new ArrayList<String>();
 		command.add(javaBin);
 		command.add("-jar");
 		command.add(currentJar.getPath());
-
 		final ProcessBuilder builder = new ProcessBuilder(command);
 		try {
 			builder.start();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.exit(0);

@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -55,14 +54,15 @@ public class RandomChairThread implements Runnable {
 	}
 
 	public void run() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
+		DateFormat fileDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
+		DateFormat normalDateFormat = new SimpleDateFormat("HH:mm:ss yyyy/MM/dd");
 		Date date = new Date();
-		System.out.println("Start random at " + dateFormat.format(date) + String.format("%n"));
-		File tempFile = new File("CRP_" + dateFormat.format(date) + ".log");
+		MainSM.announce("Start random at " + normalDateFormat.format(date) + String.format("%n"));
+		File tempFile = new File("CRP_" + fileDateFormat.format(date) + ".log");
 		try {
 			FileWriter writer = new FileWriter(tempFile, true);
 			writer.write("#Log from Chair Random Postion program!" + String.format("%n"));
-			writer.write("#Time: " + dateFormat.format(date) + String.format("%n"));
+			writer.write("#Time " + normalDateFormat.format(date) + String.format("%n"));
 			writer.write(
 					"#Made by Palapon Soontornpas & Patiphat Mana-u-krid" + String.format("%n") + String.format("%n"));
 			writer.close();
@@ -145,7 +145,16 @@ public class RandomChairThread implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		try {
+			FileWriter writer = new FileWriter(tempFile, true);
+			MainSM.announce("Finishing running task! at " + normalDateFormat.format(date) + String.format("%n"));
+			writer.write("Finish running task! at " + normalDateFormat.format(date) + String.format("%n"));
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		isRunning = false;
+		
 	}
 
 }
