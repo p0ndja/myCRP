@@ -29,9 +29,8 @@ public class MainSM extends JFrame implements ActionListener {
 	public final Color bgcolor = Color.BLACK;
 	public final String randomButton = "\u0E2A\u0E38\u0E48\u0E21";
 	public final String closeButton = "\u0E2D\u0E2D\u0E01";
-	public final String mainText = "\u0E42\u0E1B\u0E23\u0E41\u0E01\u0E23\u0E21\u0E2A\u0E38\u0E48\u0E21\u0E17\u0E35\u0E48\u0E19\u0E31\u0E48\u0E07 [4/1]";
+	public final String mainText = "\u0E42\u0E1B\u0E23\u0E41\u0E01\u0E23\u0E21\u0E2A\u0E38\u0E48\u0E21\u0E17\u0E35\u0E48\u0E19\u0E31\u0E48\u0E07 [5/1]";
 	public final String subText = "Chair Random Position";
-	public final String credit = "\u0E08\u0E31\u0E14\u0E17\u0E33\u0E42\u0E14\u0E22";
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -67,7 +66,7 @@ public class MainSM extends JFrame implements ActionListener {
 
 		JButton btnRandom = new JButton(randomButton);
 		btnRandom.setFont(new Font("Cordia New", Font.BOLD, 56));
-		btnRandom.setBounds(576, 489, 140, 100);
+		btnRandom.setBounds(576, 489, 222, 100);
 		btnRandom.addActionListener(this);
 		btnRandom.setBackground(Color.GREEN);
 		btnRandom.setForeground(Color.WHITE);
@@ -78,7 +77,7 @@ public class MainSM extends JFrame implements ActionListener {
 		JButton btnClose = new JButton(closeButton);
 		btnClose.setFont(new Font("Cordia New", Font.BOLD, 56));
 		btnClose.setForeground(Color.WHITE);
-		btnClose.setBounds(892, 489, 140, 100);
+		btnClose.setBounds(808, 489, 222, 100);
 		btnClose.addActionListener(new CloseListener());
 		btnClose.setBackground(Color.RED);
 		contentPane.setLayout(null);
@@ -99,44 +98,7 @@ public class MainSM extends JFrame implements ActionListener {
 		label1.setBounds(10, 530, 507, 59);
 		label1.setForeground(Color.WHITE);
 		contentPane.add(label1);
-		announce("add text '" + subText + "'");
-
-		JLabel label_1 = new JLabel(credit);
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Cordia New", Font.BOLD, 44));
-		label_1.setBounds(206, 371, 1457, 59);
-		contentPane.add(label_1);
-		announce("add credit head text '" + credit + "'");
-
-		JLabel lblPond = new JLabel("Palapon Soontornpas (Pond)");
-		lblPond.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPond.setFont(new Font("Cordia New", Font.BOLD, 28));
-		lblPond.setBounds(206, 399, 1457, 59);
-		lblPond.setForeground(Color.WHITE);
-		contentPane.add(lblPond);
-		announce("add credit text 'Palapon Soontornpas (Pond)'");
-
-		JLabel lblDew = new JLabel("Patiphat Mana-u-krid (Dew)");
-		lblDew.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDew.setForeground(Color.WHITE);
-		lblDew.setFont(new Font("Cordia New", Font.BOLD, 28));
-		lblDew.setBounds(206, 427, 1457, 59);
-		contentPane.add(lblDew);
-		announce("add credit text 'Patiphat Mana-u-krid (Dew)'");
-
-		JButton button = new JButton("\u0E23\u0E35\u0E04\u0E48\u0E32");
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Cordia New", Font.BOLD, 56));
-		button.setBackground(Color.CYAN);
-		button.setBounds(736, 489, 140, 100);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				restartApplication();
-			}
-		});
-		contentPane.add(button);
-		
+		announce("add text '" + subText + "'");		
 		announce("");
 		for (int i = 0; i < chairSize; i++) {
 			btnChair[i] = new JButton("");
@@ -146,9 +108,7 @@ public class MainSM extends JFrame implements ActionListener {
 					chairSizeX, chairSizeY);
 			contentPane.add(btnChair[i]);
 			switch (i) {
-			case 23:
-			case 30:
-			case 31:
+			case 99:
 				// counter++;
 				btnChair[i].setVisible(false);
 				continue;
@@ -162,7 +122,7 @@ public class MainSM extends JFrame implements ActionListener {
 			} else {
 				o = i;
 			}
-			btnChair[i].setText("" + o);
+			btnChair[i].setText("");
 			announce("render chair " + o + " at " + "x=" + (((i % 8) * chairSizeX) + ((i % 8) >= 4 ? 25 : 0)) + " y="
 					+ ((i / 8) * (chairSizeY + 25)));
 		}
@@ -179,25 +139,5 @@ public class MainSM extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		RandomChairThread chair = new RandomChairThread(this);
 		chair.isRunning = true;
-	}
-
-	public void restartApplication() {
-		final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
-		final File currentJar = new File("401chairRandom.jar");
-		/* is it a jar file? */
-		if (!currentJar.getName().endsWith(".jar"))
-			return;
-		/* Build command: java -jar application.jar */
-		final ArrayList<String> command = new ArrayList<String>();
-		command.add(javaBin);
-		command.add("-jar");
-		command.add(currentJar.getPath());
-		final ProcessBuilder builder = new ProcessBuilder(command);
-		try {
-			builder.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.exit(0);
 	}
 }

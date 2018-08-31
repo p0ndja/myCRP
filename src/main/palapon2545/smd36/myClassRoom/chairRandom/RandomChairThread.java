@@ -25,8 +25,8 @@ public class RandomChairThread implements Runnable {
 	}
 
 	String[] name = { "Not", "Tonkla", "Nut", "PunPun", "Poch", "Pond", "Ten", "Fifa", "Peem", "Pee", "Tonkhaw", "Pin",
-			"Fah", "Kate", "Baitong", "Fortune", "Nam", "Gift", "Mew", "Beam", "Queen", "JingJang", "Ploy", "Oom",
-			"Khawoat", "Junior", "Hall", "PhraePloy", "PairMaii" };
+			"Fah", "Kate", "Baitong", "Fortune", "Nam", "Gift", "Mew", "Queen", "JingJang", "Ploy", "Oom",
+			"Khawoat", "Junior", "Hall", "PhraePloy", "PairMaii", "EMPTY" , "EMPTY" , "EMPTY" , "EMPTY" };
 
 	public String beName(int intFromRandom) {
 		String changeIntToName = "";
@@ -94,6 +94,8 @@ public class RandomChairThread implements Runnable {
 
 			if (r <= 9) {
 				color = Color.CYAN;
+			} else if (r >= 28) {
+				color = Color.YELLOW;
 			} else {
 				color = Color.PINK;
 			}
@@ -112,7 +114,7 @@ public class RandomChairThread implements Runnable {
 				e.printStackTrace();
 			}
 
-			for (int delay = 0; delay < 100; delay++) {
+			for (int delay = 0; delay < 10; delay++) {
 				for (int loopRandomAnimation = loopAllChair
 						+ 1; loopRandomAnimation < maxChairSize; loopRandomAnimation++) {
 					gui.tmpButton.get(list1[loopRandomAnimation]).setText("" + name[rnd.nextInt(name.length)]);
@@ -154,6 +156,7 @@ public class RandomChairThread implements Runnable {
 			e.printStackTrace();
 		}
 		isRunning = false;
+		
 		
 	}
 
