@@ -24,9 +24,9 @@ public class RandomChairThread implements Runnable {
 		thread.start();
 	}
 
-	String[] name = { "Not", "Tonkla", "Nut", "PunPun", "Poch", "Pond", "Ten", "Fifa", "Peem", "Pee", "Tonkhaw", "Pin",
-			"Fah", "Kate", "Baitong", "Fortune", "Nam", "Gift", "Mew", "Queen", "JingJang", "Ploy", "Oom",
-			"Khawoat", "Junior", "Hall", "PhraePloy", "PairMaii", "EMPTY" , "EMPTY" , "EMPTY" , "EMPTY" };
+	public static String[] name = { "Not", "Tonkla", "Nut", "PunPun", "Poch", "Pond", "Ten", "Fifa", "Peem", "Pee",
+			"Tonkhaw", "Pin", "Fah", "Kate", "Baitong", "Fortune", "Nam", "Gift", "Mew", "Queen", "JingJang", "Ploy",
+			"Oom", "Khawoat", "Junior", "Hall", "PhraePloy", "PairMaii" };
 
 	public String beName(int intFromRandom) {
 		String changeIntToName = "";
@@ -69,7 +69,7 @@ public class RandomChairThread implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		int maxChairSize = gui.tmpButton.size();
+		int maxChairSize = name.length;
 
 		int list1[] = new int[maxChairSize]; // random order chair to complete
 		int list2[] = new int[maxChairSize]; // random value of each chair
@@ -92,13 +92,10 @@ public class RandomChairThread implements Runnable {
 
 			int r = list2[loopAllChair];
 
-			if (r <= 9) {
+			if (r <= 9) // 0-9 = 1-10
 				color = Color.CYAN;
-			} else if (r >= 28) {
-				color = Color.YELLOW;
-			} else {
+			else
 				color = Color.PINK;
-			}
 
 			gui.tmpButton.get(slotToChangeText).setText("" + text);
 			gui.tmpButton.get(slotToChangeText).setBackground(color);
@@ -114,7 +111,7 @@ public class RandomChairThread implements Runnable {
 				e.printStackTrace();
 			}
 
-			for (int delay = 0; delay < 10; delay++) {
+			for (int delay = 0; delay < 77; delay++) {
 				for (int loopRandomAnimation = loopAllChair
 						+ 1; loopRandomAnimation < maxChairSize; loopRandomAnimation++) {
 					gui.tmpButton.get(list1[loopRandomAnimation]).setText("" + name[rnd.nextInt(name.length)]);
@@ -124,28 +121,28 @@ public class RandomChairThread implements Runnable {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-
 			}
-
 		}
-
 		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < maxChairSize; j++) {
+
+			for (int j = 0; j < maxChairSize; j++)
 				gui.tmpButton.get(j).setForeground(Color.WHITE);
-			}
+
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			for (int j = 0; j < maxChairSize; j++) {
+
+			for (int j = 0; j < maxChairSize; j++)
 				gui.tmpButton.get(j).setForeground(Color.BLACK);
-			}
+
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
 		}
 		try {
 			FileWriter writer = new FileWriter(tempFile, true);
@@ -156,8 +153,7 @@ public class RandomChairThread implements Runnable {
 			e.printStackTrace();
 		}
 		isRunning = false;
-		
-		
+
 	}
 
 }
