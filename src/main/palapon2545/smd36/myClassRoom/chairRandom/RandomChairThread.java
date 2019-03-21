@@ -26,7 +26,7 @@ public class RandomChairThread implements Runnable {
 
 	public static String[] name = { "Not", "Tonkla", "Nut", "PunPun", "Poch", "Pond", "Ten", "Fifa", "Peem", "Pee",
 			"Tonkhaw", "Pin", "Fah", "Kate", "Baitong", "Fortune", "Nam", "Gift", "Mew", "Queen", "JingJang", "Ploy",
-			"Oom", "Khawoat", "Junior", "Hall", "PhraePloy", "PairMaii" };
+			"Oom", "Khawoat", "Junior", "Hall", "PhraePloy", "PairMaii"};
 
 	public String beName(int intFromRandom) {
 		String changeIntToName = "";
@@ -69,6 +69,7 @@ public class RandomChairThread implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		int maxChairSize = name.length;
 
 		int list1[] = new int[maxChairSize]; // random order chair to complete
